@@ -8,7 +8,7 @@ function getTreeStructure(structure) {
     function getProp(obj, depth = 0) {
         for (let prop in obj) {
             if(Array.isArray(obj[prop])) {
-                obj[prop].forEach(item => getProp(item, ++depth))
+                obj[prop].forEach(item => getProp(item, depth + 1))
             } else {
                 result += getRenderStringForTreeStructure(obj[prop], depth)
             }
