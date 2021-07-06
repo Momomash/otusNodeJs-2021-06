@@ -11,12 +11,20 @@ console.log(
                     "name": 3,
                     "items": [
                         {
-                            "name": 7
+                            "name": 7,
                         }
                     ]
                 },
                 {
-                    "name": 4
+                    "name": 4,
+                    "items": [
+                        {
+                            "name": 9
+                        },
+                        {
+                            "name": 10
+                        }
+                    ]
                 }
             ]
         },

@@ -13,43 +13,21 @@ function getTreeStructure(structure) {
     let result = '';
 
     getString(structure, []);
-    const example = {
-        "name": 1,
-        "items": [
-            {
-                "name": 2,
-                "items": [
-                    {
-                        "name": 3,
-                        "items": [{"name": 7}]
-                    },
-                    {"name": 4}
-                ]
-            },
-            {
-                "name": 5,
-                "items": [
-                    {"name": 6},
-                    {"name": 8}
-                ]
-            }
-        ]
-    }
 
-    function getString(obj, paddings = []) {
+    function getString(obj, paddings = [], isLast = false) {
         for (let prop in obj) {
             if (Array.isArray(obj[prop])) {
+                const newPaddings = [...paddings, '|']
                 for (let i = 0; i < obj[prop].length; i++) {
-                    let symbol = i !== obj[prop].length - 1 ? '├' : '└'
-                    getString(obj[prop][i], [...paddings, symbol])
+                    getString(obj[prop][i], newPaddings, i === obj[prop].length - 1)
                 }
             } else {
-                result += getRenderStringForTreeStructure(obj[prop], paddings)
+                result += getRenderStringForTreeStructure(obj[prop], [...paddings.slice(0, paddings.length - 1), isLast ? '└' : '├'])
             }
         }
     }
 
-    return result.slice(2, result.length)
+    return result.slice(3, result.length)
 }
 
 module.exports = getTreeStructure;
