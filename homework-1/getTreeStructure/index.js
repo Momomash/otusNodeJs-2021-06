@@ -1,21 +1,33 @@
 const getRenderStringForTreeStructure = require('../utils/getRenderStringForTreeStructure');
 
+// 1   []
+// ├── 2 ['', '├']
+// │ ├── 3 ['', '|', '', '├']
+// │ └── 4 ['', '|', '', '└']
+// └── 5  ['', '└']
+// | └── 6 ['', '|', '└']
+// └── 7 ['', '└']
+//   └── 8 ['', '', '└']
+
 function getTreeStructure(structure) {
     let result = '';
 
-    getProp(structure, 0);
+    getString(structure, []);
 
-    function getProp(obj, depth = 0) {
+    function getString(obj, paddings = []) {
         for (let prop in obj) {
-            if(Array.isArray(obj[prop])) {
-                obj[prop].forEach(item => getProp(item, depth + 1))
+            if (Array.isArray(obj[prop])) {
+                for (let i = 0; i < obj[prop].length; i++) {
+                    const symbol = i !== obj[prop].length - 1 ? '├' : '└'
+                    getString(obj[prop][i], [...paddings, symbol])
+                }
             } else {
-                result += getRenderStringForTreeStructure(obj[prop], depth)
+                result += getRenderStringForTreeStructure(obj[prop], paddings)
             }
         }
     }
 
-    return result.slice(4, result.length)
+    return result.slice(2, result.length)
 }
 
 module.exports = getTreeStructure;

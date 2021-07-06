@@ -1,6 +1,18 @@
 const getTreeStructure = require('./getTreeStructure');
+// 1
+// ├── 2
+// │ ├── 3
+// │ └── 4
+// |    ├── 9
+// |    |  └── 11
+// |    └── 10
+// ├── 5
+// | └── 6
+// └── 7
+//   └── 8
 
-console.log(getTreeStructure({
+console.log(
+    getTreeStructure({
     "name": 1,
     "items": [
         {
@@ -24,8 +36,12 @@ console.log(getTreeStructure({
             "items": [
                 {
                     "name": 6
+                },
+                {
+                    "name": 8
                 }
             ]
         }
     ]
-}))
+})
+)
