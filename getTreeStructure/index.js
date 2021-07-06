@@ -1,3 +1,5 @@
+const getRenderStringForTreeStructure = require('../utils/getRenderStringForTreeStructure');
+
 function getTreeStructure(structure) {
     let result = '';
 
@@ -8,7 +10,7 @@ function getTreeStructure(structure) {
             if(Array.isArray(obj[prop])) {
                 obj[prop].forEach(item => getProp(item, ++depth))
             } else {
-                result += `${new Array(depth).fill('  ').join('')}└── ${obj[prop]} \n`
+                result += getRenderStringForTreeStructure(obj[prop], depth)
             }
         }
     }
