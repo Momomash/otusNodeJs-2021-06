@@ -17,14 +17,6 @@ console.log(
                 },
                 {
                     "name": 4,
-                    "items": [
-                        {
-                            "name": 9
-                        },
-                        {
-                            "name": 10
-                        }
-                    ]
                 }
             ]
         },
