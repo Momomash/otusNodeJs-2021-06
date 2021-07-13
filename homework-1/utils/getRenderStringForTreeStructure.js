@@ -1,5 +1,5 @@
 const getRenderStringForTreeStructure = (value, paddings = []) => {
-    return `${paddings.join('  ')}──${value} \n`
+    return `${paddings.join('  ')}──${value}`
 }
 
 module.exports = getRenderStringForTreeStructure;

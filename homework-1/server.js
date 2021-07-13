@@ -24,10 +24,25 @@ console.log(
             "name": 5,
             "items": [
                 {
-                    "name": 6
+                    "name": 6,
+                    "items": [
+                        {
+                            "name": 10,
+                        }
+                    ]
                 },
                 {
-                    "name": 8
+                    "name": 8,
+                    "items": [
+                        {
+                            "name": 9,
+                            "items": [
+                                {
+                                    "name": 10,
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
