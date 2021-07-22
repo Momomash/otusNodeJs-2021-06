@@ -1,6 +1,6 @@
 const getTreeStructure = require('./getTreeStructure');
 
-console.log(
+console.log( 'task 1 \n',
     getTreeStructure({
     "name": 1,
     "items": [

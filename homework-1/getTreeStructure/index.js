@@ -8,7 +8,7 @@ function getTreeStructure(structure) {
     function getString(obj, paddings = [], isLast = false) {
         let paddingsForLastElement = [...paddings]
         if (isLast && Object.keys(obj).length > 1) {
-            paddingsForLastElement = paddings.slice(0, paddings.length - 1).concat([' ']);
+            paddingsForLastElement[paddingsForLastElement.length -1] = ' '
         }
         for (let prop in obj) {
             if (Array.isArray(obj[prop])) {
