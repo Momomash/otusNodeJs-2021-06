@@ -1,4 +1,4 @@
-const getTreeStructure = require('./getTreeStructure');
+const getTreeStructure = require('./serializeTree');
 
 console.log( 'task 1 \n',
     getTreeStructure({
