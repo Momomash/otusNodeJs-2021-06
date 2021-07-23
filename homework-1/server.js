@@ -38,7 +38,7 @@ console.log( 'task 1 \n',
                             "name": 9,
                             "items": [
                                 {
-                                    "name": 10,
+                                    "name": 11,
                                 }
                             ]
                         }
