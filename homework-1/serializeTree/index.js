@@ -1,24 +1,25 @@
 const getRenderStringForTreeStructure = require('../utils/getRenderStringForTreeStructure');
 
-function buildTreeArray(obj, paddings = [], isLast = false, accumulator = []) {
-    let paddingsForLastElement = [...paddings]
+function buildTreeArray(obj, tree = [], paddings = [], isLast = false,) {
     if (isLast && Object.keys(obj).length > 1) {
-        paddingsForLastElement[paddingsForLastElement.length - 1] = ' '
+        paddings[paddings.length - 1] = ' '
     }
-    for (let prop in obj) {
-        if (Array.isArray(obj[prop])) {
-            for (let i = 0; i < obj[prop].length; i++) {
-                accumulator = buildTreeArray(obj[prop][i], [...paddingsForLastElement, '|'], i === obj[prop].length - 1, accumulator)
-            }
+    Object.keys(obj).forEach(key => {
+        const value = obj[key]
+        if (Array.isArray(value)) {
+            tree = value.reduce((accumulator, item, i, arr) => {
+                return buildTreeArray(item, accumulator, [...paddings, '|'], i === arr.length - 1)
+            }, tree)
         } else {
-            accumulator = [...accumulator, getRenderStringForTreeStructure(obj[prop], [...paddingsForLastElement.slice(0, paddingsForLastElement.length - 1), isLast ? '└' : '├'])]
+            const closingPaddings = [...paddings.slice(0, -1), isLast ? '└' : '├']
+            tree = [...tree, getRenderStringForTreeStructure(value, closingPaddings)]
         }
-    }
-    return accumulator
+    })
+    return tree
 }
 
 function serializeTree(structure) {
-    const result = buildTreeArray(structure, [], false, [])
+    const result = buildTreeArray(structure)
     result[0] = result[0].slice(3, result[0].length)
     return result.join('\n')
 }
