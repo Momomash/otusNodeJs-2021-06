@@ -17,4 +17,6 @@
 4 directories, 7 files
 
 #How to
-```cd homework-1 node server.js```
+task 1: ```node task1.js```
+
+task 2: ```node task2.js <AnyPath> <depth(optional)> ```
