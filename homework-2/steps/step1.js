@@ -4,10 +4,11 @@
 
 const fs = require("fs");
 const commonConstants = require("../commonConstants");
-const liner =  require("../utils/liner");
+const newLiner =  require("../utils/liner");
 
 const step1 = async (quantityOfFiles) => {
     await new Promise((resolve, reject) => {
+        const liner = newLiner()
         fs.createReadStream(`./${commonConstants.INITIAL_FILE_PATH}`).pipe(liner)
         let streams = [];
         let line
@@ -41,6 +42,7 @@ const step1 = async (quantityOfFiles) => {
                 const sortedData = data.split('\n').map(i => Number(i)).sort((a,b) =>  a - b).join('\n')
                 fs.writeFile(`chunkFile-${i}.txt`, sortedData, (err => console.log(err ? 'err' : `chunkFile-${i}.txt has been write`)))
                 fs.unlink(initialFilePath, (err => console.log(err ? 'err' : ` ${initialFilePath} has been deleted`)))
+                console.log('end of sort')
             })
 
         }
